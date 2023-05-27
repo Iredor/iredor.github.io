@@ -53,6 +53,7 @@
   align-items: center;
   justify-content: center;
   margin-inline: auto;
+  position:relative;
 
   @include media(tablet) {
     flex-direction: row;
@@ -91,4 +92,19 @@ h2 {
   color: #A80000;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
+}
+
+.child{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  margin-top: 5em;
+  border: 1px solid red;
+  padding: 1px;
+
+  @include media(tablet) {
+    flex-direction: row;
+  }
 }
