@@ -7,35 +7,39 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'MY PUNISHMENT';
-  shouldShowThreeButtons: boolean = false;
   chose: string = 'home';
-  drink: string[] = ['Drink a shot','Drink two shots','Drink in one gulp','Blowjob shot','Drink from the bottle','Drink from his body'];
-  soft: string[] = ['Kiss on the lips', 'Touch the ass',  'Show ass','Show them','Show boobs','Sexy striptease',
+  tot: number = 0;
+  totHard: number = 0;
+
+  // Nuove variabili per gestire le immagini
+  drink = ['Drink a shot','Drink two shots','Drink in one gulp','Blowjob shot','Drink from the bottle','Drink from his body'];
+  soft = ['Kiss on the lips', 'Touch the ass',  'Show ass','Show them','Show boobs','Sexy striptease',
                     'Find honey on her body while blindfolded'];
-  hard: string[] = ['Doggy style', 'Seated scissors', 'Spork sex','See saw sex', 'Crazy starfish', 'Lap dance sex', 
+  hard = ['Doggy style', 'Seated scissors', 'Spork sex','See saw sex', 'Crazy starfish', 'Lap dance sex', 
                     'Sex on a bar stool', 'Anal sex - If you agree','Double penetration with sex toy'];
-  medium: string[] = ['Oral sex', 'Standing oral sex', 'Ass fingering', 'Chair blowjob' ,'Masturbate','Have fun with a sex toy',
+  medium = ['Oral sex', 'Standing oral sex', 'Ass fingering', 'Chair blowjob' ,'Masturbate','Have fun with a sex toy',
                       'Nipples licking', 'Masturbate him', '69', 'Ass licking', 'Oral sex with ass fingering',
                       'Oral sex while masturbating','Masturbate each other','Bondage', 'Guess 3 ingredients from her private parts'];
-  randomElement: string = 'home';
-  tot:number =0;
-  totHard:number =0;
 
+  randomElement: string = 'home';
+
+  // Funzione per cambiare la sezione
   showThreeButtons(choosing: string) {
     this.chose = choosing;
   }
 
-  countMedium(){
-    this.tot = this.tot + 1;
+  // Funzione per aggiornare il conteggio
+  updateCount(section: string) {
+    if (section === 'medium') {
+      this.tot++;
+    } else if (section === 'hard') {
+      this.totHard++;
+    }
   }
 
-  countHard(){
-    this.totHard = this.totHard + 1;
-  }
-
+  // Funzione per ottenere un'immagine casuale
   getImgUrl(list: string[]) {    
     this.randomElement = list[Math.floor(Math.random() * list.length)];
-    return '../assets/img/' + this.randomElement + '.png';
+    return `../assets/img/${this.randomElement}.png`;
   }
-    
 }

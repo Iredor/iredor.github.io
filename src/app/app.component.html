@@ -1,25 +1,24 @@
-<h1 class="title">{{ title }}!</h1>
+<div class="header">
+  <h1 class="title">{{ title }}</h1>
+  <button class="buttonHome" (click)="showThreeButtons('home')">
+    <img src="../assets/img/home.png" alt="Home" />
+  </button>
+</div>
 
 <div class="container">
-  <button
-    *ngIf="chose == 'home'"
-    type="button"
-    (click)="showThreeButtons('buttons')">
-    <img src="../assets/img/PORN.png" width="100%"/>
+  <button *ngIf="chose === 'home'" class="buttonP" (click)="showThreeButtons('buttons')">
+    <img src="../assets/img/PORN.png" alt="First Level" class="responsive-img"/>
   </button>
 
   <div class="threeButtons" *ngIf="chose == 'buttons'">
-    <button type="button" class = "buttonP" (click)="showThreeButtons('soft'); countMedium()">
+    <button type="button" class="buttonP" (click)="showThreeButtons('soft'); updateCount('medium')">
       <h2>SOFT</h2>
     </button>
-    <button *ngIf="tot > 9" type="button" class = "buttonP" (click)="showThreeButtons('medium'); countHard()">
+    <button *ngIf="tot > 9" type="button" class="buttonP" (click)="showThreeButtons('medium'); updateCount('hard')">
       <h2>MEDIUM</h2>
     </button>
-    <button *ngIf="totHard > 9" type="button" class = "buttonP" (click)="showThreeButtons('hard')">
+    <button *ngIf="totHard > 9" type="button" class="buttonP" (click)="showThreeButtons('hard')">
       <h2>HARD</h2>
-    </button>
-    <button type="button" class="buttonHome" (click)="showThreeButtons('home')">
-      <img src="../assets/img/home.png" width="50px" height="50px" />
     </button>
   </div>
 
@@ -31,12 +30,6 @@
     <img src="{{ getImgUrl(drink) }}" width="300px" height="300px" />
     <div class="home">
       <h2>{{randomElement}}</h2>
-      <button
-        type="button"
-        class="buttonHome"
-        (click)="showThreeButtons('home')">
-        <img src="../assets/img/home.png" width="50px" height="50px" />
-      </button>
     </div>
   </div>
 
@@ -44,12 +37,6 @@
     <img src="{{ getImgUrl(soft) }}" width="300px" height="300px" />
     <div class="home">
       <h2>{{randomElement}}</h2>
-      <button
-        type="button"
-        class="buttonHome"
-        (click)="showThreeButtons('home')">
-        <img src="../assets/img/home.png" width="50px" height="50px" />
-      </button>
     </div>
   </div>
 
@@ -57,12 +44,6 @@
     <img src="{{ getImgUrl(medium) }}" width="300px" height="300px" />
     <div class="home">
       <h2>{{randomElement}}</h2>
-      <button
-        type="button"
-        class="buttonHome"
-        (click)="showThreeButtons('home')">
-        <img src="../assets/img/home.png" width="50px" height="50px" />
-      </button>
     </div>
   </div>
 
@@ -70,12 +51,6 @@
     <img src="{{ getImgUrl(hard) }}" width="300px" height="300px" />
     <div class="home">
       <h2>{{randomElement}}</h2>
-      <button
-        type="button"
-        class="buttonHome"
-        (click)="showThreeButtons('home')">
-        <img src="../assets/img/home.png" width="50px" height="50px" />
-      </button>
     </div>
   </div>
 </div>

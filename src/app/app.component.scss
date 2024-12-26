@@ -10,17 +10,60 @@
       @content;
     }
   }
+  
+  // Media query per smartphone
+  @if ($breakpoint == mobile) {
+    @media (max-width: 48rem) {
+      @content;
+    }
+  }
+}
+
+// Header con titolo e pulsante Home
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;  // Assicurati che il pulsante rimanga sopra il contenuto
 }
 
 .title {
+  font-size: 2rem;
+  color: #369;
+  flex: 1;
+  text-align: center;
+  margin: 0;  // Elimina margini indesiderati
+}
+
+.buttonHome {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: none;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  color: #369;
-  font-size: 2.5rem;
+  height: 100%;  // Altezze 100% rispetto al titolo
+  width: auto;
 }
 
+.buttonHome img {
+  width: auto;
+  height: 100%;  // L'altezza dell'immagine è impostata per essere uguale all'altezza del titolo
+  max-height: 2rem;  // La massima altezza dell'icona Home sarà pari alla dimensione del font del titolo
+}
+
+@include media(mobile) {
+  .buttonHome img {
+    max-height: 2rem;  // Impostiamo la stessa dimensione del titolo su mobile
+  }
+}
+
+// Container principale (con i pulsanti)
 .container {
   display: flex;
   flex-direction: column;
@@ -32,11 +75,17 @@
     flex-direction: row;
   }
 
+  @include media(mobile) {
+    flex-direction: column;
+  }
+
   & img {
+    width: 100%;
+    margin-inline: unset;
+    margin-left: 5px;
+
     @include media(tablet) {
       width: 100%;
-      margin-inline: unset;
-      margin-left: 5px;
     }
   }
 }
@@ -45,6 +94,11 @@
   cursor: pointer;
   margin: 0.5em;
   padding: 0;
+
+  @include media(mobile) {
+    width: 100%;
+    height: 100px;  // Aumenta l'altezza del pulsante sui dispositivi mobili
+  }
 }
 
 .threeButtons {
@@ -53,27 +107,30 @@
   align-items: center;
   justify-content: center;
   margin-inline: auto;
-  position:relative;
+  position: relative;
 
   @include media(tablet) {
     flex-direction: row;
   }
+
+  @include media(mobile) {
+    width: 100%;
+    padding: 0;
+  }
 }
 
-.buttonP{
+.buttonP {
   margin: 0.5em;
   padding: 0;
   cursor: pointer;
   width: 200px;
   height: 100px;
-}
 
-.buttonHome {
-  cursor: pointer;
-  margin: 0.5em;
-  padding: 0;
-  border: 0;
-  background-color: white;
+  @include media(mobile) {
+    width: 100%;   // Occupano tutta la larghezza disponibile
+    height: 120px; // Aumenta l'altezza per una miglior interazione
+    font-size: 1.5rem; // Ingrandisce il testo per miglior visibilità
+  }
 }
 
 .home {
@@ -94,7 +151,7 @@ h2 {
   font-weight: lighter;
 }
 
-.child{
+.child {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -106,5 +163,47 @@ h2 {
 
   @include media(tablet) {
     flex-direction: row;
+  }
+
+  @include media(mobile) {
+    width: 100%;
+    padding: 10px;
+  }
+
+.container button img {
+  width: 100%;   // Occupano tutta la larghezza disponibile
+  height: 100%;  // Occupano tutta l'altezza disponibile
+  object-fit: cover;  // Riempie il contenitore, mantenendo le proporzioni senza deformare
+
+  @include media(mobile) {
+    width: 100%;  // Occupano tutta la larghezza disponibile
+    height: 100%; // Occupano tutta l'altezza disponibile
+    object-fit: cover; // Rende l'immagine proporzionale all'interno del pulsante
+    max-height: 150px;  // Imposta un'altezza massima per evitare che le immagini siano troppo grandi
+  }
+}
+  
+  .buttonP img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  // Impediamo che l'immagine venga deformata
+  
+    @include media(mobile) {
+      width: 100%;
+      height: auto;    // L'immagine mantiene la proporzione su dispositivi mobili
+      max-height: 100px; // Limita l'altezza per evitare che le immagini siano troppo grandi
+    }
+  }
+  
+  .buttonHome img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  // Manteniamo la proporzione dell'immagine
+  
+    @include media(mobile) {
+      width: 80px;     // Impostiamo una dimensione fissa per l'icona
+      height: 80px;
+      object-fit: contain;  // Manteniamo le proporzioni senza deformazione
+    }
   }
 }
