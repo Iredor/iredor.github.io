@@ -1,3 +1,4 @@
+/* Impostazioni di base */
 @mixin media($breakpoint) {
   @if ($breakpoint == tablet) {
     @media (min-width: 48rem) {
@@ -10,7 +11,7 @@
       @content;
     }
   }
-  
+
   // Media query per smartphone
   @if ($breakpoint == mobile) {
     @media (max-width: 48rem) {
@@ -19,24 +20,22 @@
   }
 }
 
-// Header con titolo e pulsante Home
+/* Header con titolo e pulsante Home */
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Centra orizzontalmente titolo e pulsante */
+  align-items: center;     /* Centra verticalmente */
   padding: 1rem;
   position: sticky;
   top: 0;
   background-color: #fff;
-  z-index: 1000;  // Assicurati che il pulsante rimanga sopra il contenuto
+  z-index: 1000;  /* Assicurati che il pulsante rimanga sopra il contenuto */
 }
 
 .title {
   font-size: 2rem;
   color: #369;
-  flex: 1;
-  text-align: center;
-  margin: 0;  // Elimina margini indesiderati
+  margin: 0;  /* Elimina margini indesiderati */
 }
 
 .buttonHome {
@@ -47,29 +46,38 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;  // Altezze 100% rispetto al titolo
+  height: 100%;  /* Altezze 100% rispetto al titolo */
   width: auto;
 }
 
+/* Immagine del pulsante Home */
 .buttonHome img {
   width: auto;
-  height: 100%;  // L'altezza dell'immagine è impostata per essere uguale all'altezza del titolo
-  max-height: 2rem;  // La massima altezza dell'icona Home sarà pari alla dimensione del font del titolo
+  height: 100%;
+  max-height: 2rem;  /* Imposta la massima altezza dell'icona Home pari alla dimensione del font del titolo */
+}
+
+/* Separazione tra il titolo e il pulsante Home su schermi più grandi */
+.ms-3 {
+  margin-left: 1rem;
 }
 
 @include media(mobile) {
   .buttonHome img {
-    max-height: 2rem;  // Impostiamo la stessa dimensione del titolo su mobile
+    max-height: 2rem;  /* Impostiamo la stessa dimensione del titolo su mobile */
   }
 }
 
-// Container principale (con i pulsanti)
+/* Container principale (con i pulsanti iniziali) */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-inline: auto;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 
   @include media(tablet) {
     flex-direction: row;
@@ -77,16 +85,6 @@
 
   @include media(mobile) {
     flex-direction: column;
-  }
-
-  & img {
-    width: 100%;
-    margin-inline: unset;
-    margin-left: 5px;
-
-    @include media(tablet) {
-      width: 100%;
-    }
   }
 }
 
@@ -97,10 +95,38 @@
 
   @include media(mobile) {
     width: 100%;
-    height: 100px;  // Aumenta l'altezza del pulsante sui dispositivi mobili
+    height: 120px;  /* Aumenta l'altezza del pulsante sui dispositivi mobili */
   }
 }
 
+/* Pulsanti iniziali */
+.initial-button {
+  width: 100%; /* Impostiamo la larghezza del pulsante al 100% */
+  height: 120px; /* Impostiamo un'altezza fissa per i pulsanti */
+  padding: 0;
+  margin: 0.5em 0;
+  display: flex;
+  justify-content: center; /* Centriamo il contenuto all'interno */
+  align-items: center; /* Centriamo verticalmente */
+}
+
+.initial-button img {
+  max-width: 100%; /* L'immagine non può eccedere la larghezza del pulsante */
+  height: auto; /* Manteniamo le proporzioni */
+  object-fit: contain; /* Manteniamo le proporzioni originali senza deformare l'immagine */
+}
+
+@include media(mobile) {
+  .initial-button {
+    height: 150px; /* Alziamo l'altezza del pulsante per renderlo più grande */
+  }
+
+  .initial-button img {
+    max-height: 100%; /* Limitiamo l'altezza dell'immagine per non fuoriuscire */
+  }
+}
+
+/* Pulsanti soft, medium, hard */
 .threeButtons {
   display: flex;
   flex-direction: column;
@@ -127,7 +153,7 @@
   height: 100px;
 
   @include media(mobile) {
-    width: 100%;   // Occupano tutta la larghezza disponibile
+    width: 100%;   /* Occupano tutta la larghezza disponibile */
     height: 120px; // Aumenta l'altezza per una miglior interazione
     font-size: 1.5rem; // Ingrandisce il testo per miglior visibilità
   }
@@ -151,6 +177,7 @@ h2 {
   font-weight: lighter;
 }
 
+/* Sezione con testo per i punteggi */
 .child {
   display: flex;
   flex-direction: column;
@@ -169,41 +196,40 @@ h2 {
     width: 100%;
     padding: 10px;
   }
-
-.container button img {
-  width: 100%;   // Occupano tutta la larghezza disponibile
-  height: 100%;  // Occupano tutta l'altezza disponibile
-  object-fit: cover;  // Riempie il contenitore, mantenendo le proporzioni senza deformare
-
-  @include media(mobile) {
-    width: 100%;  // Occupano tutta la larghezza disponibile
-    height: 100%; // Occupano tutta l'altezza disponibile
-    object-fit: cover; // Rende l'immagine proporzionale all'interno del pulsante
-    max-height: 150px;  // Imposta un'altezza massima per evitare che le immagini siano troppo grandi
-  }
 }
-  
-  .buttonP img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  // Impediamo che l'immagine venga deformata
-  
-    @include media(mobile) {
-      width: 100%;
-      height: auto;    // L'immagine mantiene la proporzione su dispositivi mobili
-      max-height: 100px; // Limita l'altezza per evitare che le immagini siano troppo grandi
-    }
+
+/* Contenitore dell'immagine e del testo */
+.random-image-container {
+  display: flex;
+  flex-direction: column;  /* Assicurati che gli elementi siano in colonna */
+  align-items: center;     /* Centra orizzontalmente gli elementi */
+  justify-content: center; /* Centra verticalmente */
+  margin: 1rem;  /* Un po' di spazio attorno al contenitore */
+}
+
+.random-image-container img {
+  width: 100%;  /* L'immagine non supera mai la larghezza del contenitore */
+  max-width: 300px;  /* Limitiamo la larghezza massima dell'immagine a 300px */
+  height: auto;      /* Manteniamo le proporzioni originali dell'immagine */
+  object-fit: contain;  /* Assicuriamo che l'immagine mantenga le proporzioni senza deformarsi */
+}
+
+.random-image-container h2 {
+  margin-top: 1rem;   /* Aggiungiamo uno spazio tra l'immagine e il testo */
+  color: #A80000;     /* Puoi scegliere il colore che desideri */
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 1.5rem;   /* Impostiamo una dimensione più leggibile per il testo */
+}
+
+@include media(mobile) {
+  /* Su dispositivi mobili, gestiamo la larghezza dell'immagine e il margine */
+  .random-image-container img {
+    max-width: 90%; /* Limitamo la larghezza dell'immagine al 90% dello schermo */
+    height: auto;
   }
-  
-  .buttonHome img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;  // Manteniamo la proporzione dell'immagine
-  
-    @include media(mobile) {
-      width: 80px;     // Impostiamo una dimensione fissa per l'icona
-      height: 80px;
-      object-fit: contain;  // Manteniamo le proporzioni senza deformazione
-    }
+
+  .random-image-container h2 {
+    font-size: 1.2rem;  /* Riduciamo la dimensione del testo su mobile */
   }
 }

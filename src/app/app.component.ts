@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'MY PUNISHMENT';
+  title = 'PUNISHMENT';
   chose: string = 'home';
   tot: number = 0;
   totHard: number = 0;

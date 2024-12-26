@@ -1,64 +1,82 @@
-<div class="header">
-  <h1 class="title">{{ title }}</h1>
-  <button class="buttonHome" (click)="showThreeButtons('home')">
-    <img src="../assets/img/home.png" alt="Home" />
+<div class="header d-flex justify-content-center align-items-center p-3 sticky-top">
+  <h1 class="title text-center">{{ title }}</h1>
+  <button class="buttonHome ms-3" (click)="showThreeButtons('home')">
+    <img src="../assets/img/home.png" alt="Home" class="img-fluid" />
   </button>
 </div>
 
-<div class="container">
-  <button *ngIf="chose === 'home'" class="buttonP" (click)="showThreeButtons('buttons')">
-    <img src="../assets/img/PORN.png" alt="First Level" class="responsive-img"/>
-  </button>
+<div class="container my-4">
+  <!-- Pulsanti iniziali (Home, Medim, Hard) -->
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-4 mb-3">
+      <button *ngIf="chose == 'home'" type="button" (click)="showThreeButtons('buttons')" class="initial-button w-100">
+        <img src="../assets/img/PORN.png" alt="First" class="img-fluid" />
+      </button>
+    </div>
 
+    <div class="col-12 col-sm-4 mb-3">
+      <button *ngIf="chose == 'home'" type="button" (click)="showThreeButtons('alcohol')" class="initial-button w-100">
+        <img src="../assets/img/ALCOHOL.png" alt="Alcohol" class="img-fluid" />
+      </button>
+    </div>
+  </div>
+
+  <!-- Pulsanti con livelli (Soft, Medium, Hard) -->
   <div class="threeButtons" *ngIf="chose == 'buttons'">
-    <button type="button" class="buttonP" (click)="showThreeButtons('soft'); updateCount('medium')">
-      <h2>SOFT</h2>
-    </button>
-    <button *ngIf="tot > 9" type="button" class="buttonP" (click)="showThreeButtons('medium'); updateCount('hard')">
-      <h2>MEDIUM</h2>
-    </button>
-    <button *ngIf="totHard > 9" type="button" class="buttonP" (click)="showThreeButtons('hard')">
-      <h2>HARD</h2>
-    </button>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-4 mb-3">
+        <button type="button" class="buttonP w-100" (click)="showThreeButtons('soft'); updateCount('medium')">
+          <h2>SOFT</h2>
+        </button>
+      </div>
+      <div class="col-12 col-md-4 mb-3" *ngIf="tot > 9">
+        <button type="button" class="buttonP w-100" (click)="showThreeButtons('medium'); updateCount('hard')">
+          <h2>MEDIUM</h2>
+        </button>
+      </div>
+      <div class="col-12 col-md-4 mb-3" *ngIf="totHard > 9">
+        <button type="button" class="buttonP w-100" (click)="showThreeButtons('hard')">
+          <h2>HARD</h2>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <button *ngIf="chose == 'home'" type="button" (click)="showThreeButtons('alcohol')">
-    <img src="../assets/img/ALCOHOL.png" />
-  </button>
-
+  <!-- Immagine casuale con nome -->
   <div *ngIf="chose == 'alcohol'">
-    <img src="{{ getImgUrl(drink) }}" width="300px" height="300px" />
-    <div class="home">
+    <div class="random-image-container text-center">
+      <img src="{{ getImgUrl(drink) }}" class="img-fluid" />
       <h2>{{randomElement}}</h2>
     </div>
   </div>
 
-  <div *ngIf="chose == 'soft'">
-    <img src="{{ getImgUrl(soft) }}" width="300px" height="300px" />
-    <div class="home">
+  <div class="random-image-container" *ngIf="chose == 'soft'">
+    <div class="random-image-container text-center">
+      <img src="{{ getImgUrl(soft) }}" class="img-fluid" />
       <h2>{{randomElement}}</h2>
     </div>
   </div>
 
-  <div *ngIf="chose == 'medium'">
-    <img src="{{ getImgUrl(medium) }}" width="300px" height="300px" />
-    <div class="home">
+  <div class="random-image-container" *ngIf="chose == 'medium'">
+    <div class="random-image-container text-center">
+      <img src="{{ getImgUrl(medium) }}" class="img-fluid" />
       <h2>{{randomElement}}</h2>
     </div>
   </div>
 
-  <div *ngIf="chose == 'hard'">
-    <img src="{{ getImgUrl(hard) }}" width="300px" height="300px" />
-    <div class="home">
+  <div class="random-image-container" *ngIf="chose == 'hard'">
+    <div class="random-image-container text-center">
+      <img src="{{ getImgUrl(hard) }}" class="img-fluid" />
       <h2>{{randomElement}}</h2>
     </div>
   </div>
 </div>
 
-<div class = "child" *ngIf="tot<10 && chose == 'buttons'">
+<!-- Sezioni sbloccabili -->
+<div class="child" *ngIf="tot<10 && chose == 'buttons'">
   <h2>Medium section unlockable in {{10-tot}} rounds</h2>
 </div>
 
-<div class = "child" *ngIf="totHard<10 && chose == 'buttons' && tot>=10">
+<div class="child" *ngIf="totHard<10 && chose == 'buttons' && tot>=10">
   <h2>Hard section unlockable in {{10-totHard}} medium rounds</h2>
 </div>
